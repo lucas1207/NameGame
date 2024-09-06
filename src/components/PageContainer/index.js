@@ -1,9 +1,7 @@
-import { SafeAreaView } from "react-native"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
-
+import { SafeAreaView } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 function PageContainer({ children, style }) {
-
     const { bottom, left, right, top } = useSafeAreaInsets()
 
     return (
@@ -16,8 +14,9 @@ function PageContainer({ children, style }) {
                 paddingBottom: bottom,
                 paddingLeft: left,
                 paddingRight: right,
-                ...style
-            }} >
+                ...style,
+            }}
+        >
             {children}
         </SafeAreaView>
     )

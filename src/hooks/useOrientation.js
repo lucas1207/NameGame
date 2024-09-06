@@ -1,25 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { useWindowDimensions } from "react-native";
+import React, { createContext, useContext } from 'react'
 
-const OrientationContext = createContext({});
+const OrientationContext = createContext({})
 
 const OrientationProvider = ({ children }) => {
-    const [orientation, setOrientation] = useState('PORTRAIT')
-
-    const { height, width } = useWindowDimensions()
-
-    useEffect(() => {
-        if (height > width) {
-            setOrientation('PORTRAIT')
-        } else {
-            setOrientation('LANDSCAPE')
-        }
-    }, [height, width])
-
     return (
-        <OrientationContext.Provider
-            value={{ orientation }}
-        >
+        <OrientationContext.Provider value={{}}>
             {children}
         </OrientationContext.Provider>
     )
@@ -29,10 +14,12 @@ function useOrientation() {
     const context = useContext(OrientationContext)
 
     if (!context) {
-        throw new Error("usePositions must be used within as PositionsProvider");
+        throw new Error(
+            'useOrientation must be used within as OrientationProvider'
+        )
     }
 
-    return context;
+    return context
 }
 
-export { OrientationProvider, useOrientation };
+export { OrientationProvider, useOrientation }

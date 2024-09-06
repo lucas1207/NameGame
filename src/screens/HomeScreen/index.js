@@ -1,41 +1,37 @@
+import { TouchableOpacity, Text } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
-import { TouchableOpacity, Text, Platform } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-
-import PageContainer from '../../components/PageContainer';
+import PageContainer from '../../components/PageContainer'
 
 import { styles } from './styles'
 
-
-
 const HomeScreen = () => {
+    const { navigate } = useNavigation()
 
-  const { navigate } = useNavigation()
+    return (
+        <PageContainer>
+            <Text style={styles.descriptionText}>
+                Try matching the WillowTree Employee to their photo
+            </Text>
+            <TouchableOpacity
+                onPress={() => {
+                    navigate('Practice Mode')
+                }}
+                style={styles.button}
+            >
+                <Text style={styles.textButton}>Practice Mode</Text>
+            </TouchableOpacity>
 
-  return (
-    <PageContainer>
-      {Platform.OS === 'web' ?
-        <TouchableOpacity onPress={() => { navigate('Practice Mode') }} style={styles.button}>
-          <Text>Play</Text>
-        </TouchableOpacity> :
-
-        <>
-          <TouchableOpacity onPress={() => { navigate('Practice Mode') }} style={styles.button}>
-            <Text>Practice Mode</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => { navigate('Timed Mode') }} style={styles.button}>
-            <Text>Timed Mode</Text>
-          </TouchableOpacity>
-        </>
-
-
-      }
-    </PageContainer>
-
-  );
+            <TouchableOpacity
+                onPress={() => {
+                    navigate('Timed Mode')
+                }}
+                style={styles.button}
+            >
+                <Text style={styles.textButton}>Timed Mode</Text>
+            </TouchableOpacity>
+        </PageContainer>
+    )
 }
 
 export default HomeScreen
-

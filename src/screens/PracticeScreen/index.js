@@ -1,30 +1,36 @@
+import { useCallback, useEffect, useState } from 'react'
+import PageContainer from '../../components/PageContainer'
 
-import { useEffect, useState } from 'react';
-import PageContainer from '../../components/PageContainer';
+import GetProfiles from '../../services/getProfiles'
 
-import GetProfiles from '../../services/getProfiles';
-
+import { styles } from './styles'
+import { Text, View } from 'react-native'
+import ImageButton from '../../components/ImageButton'
 
 const PracticeScreen = () => {
-  const [profiles, setProfiles] = useState()
+    const [fullArray, setFullArray] = useState([])
 
-  const getData = async () => {
-    const response = await GetProfiles()
+    useEffect(() => {
+        const getData = async () => {
+            const response = await GetProfiles()
+            setFullArray(response)
+        }
+        getData()
+    }, [])
 
-    setProfiles(response)
-  }
+    const profiles = ['', '', '', '', '', '']
 
-  useEffect(() => {
-    getData()
-  }, [])
+    return (
+        <PageContainer>
+            <Text style={styles.nameText}>Selected Profile</Text>
 
-  return (
-    <PageContainer style={{}}>
-
-    </PageContainer>
-
-  );
+            <View style={styles.viewContent}>
+                {profiles.map((item, index) => (
+                    <ImageButton key={index} item={item} />
+                ))}
+            </View>
+        </PageContainer>
+    )
 }
 
 export default PracticeScreen
-

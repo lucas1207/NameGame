@@ -1,26 +1,18 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from 'react'
 
-const TimerContext = createContext({});
+const TimerContext = createContext({})
 
 const TimerProvider = ({ children }) => {
-    const [timer, setTimer] = useState(0)
-
-    return (
-        <TimerContext.Provider
-            value={{ timer }}
-        >
-            {children}
-        </TimerContext.Provider>
-    )
+    return <TimerContext.Provider value={{}}>{children}</TimerContext.Provider>
 }
 
 function useTimer() {
     const context = useContext(TimerContext)
 
     if (!context) {
-        throw new Error("useTimer must be used within as TimerProvider");
+        throw new Error('useTimer must be used within as TimerProvider')
     }
-    return context;
+    return context
 }
 
-export { TimerProvider, useTimer };
+export { TimerProvider, useTimer }
