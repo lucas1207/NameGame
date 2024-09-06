@@ -1,22 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import PageContainer from '../../components/PageContainer'
-
-import GetProfiles from '../../services/getProfiles'
 
 import { styles } from './styles'
 import { Text, View } from 'react-native'
 import ImageButton from '../../components/ImageButton'
+import { usePracticeMode } from '../../hooks/usePracticeMode'
 
 const PracticeScreen = () => {
-    const [fullArray, setFullArray] = useState([])
-
-    useEffect(() => {
-        const getData = async () => {
-            const response = await GetProfiles()
-            setFullArray(response)
-        }
-        getData()
-    }, [])
+    const { fullArray } = usePracticeMode()
 
     const profiles = ['', '', '', '', '', '']
 
